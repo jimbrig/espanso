@@ -110,7 +110,7 @@ On Widows, the default path is `%APPDATA%\espanso`, and the configuration files 
 
 #### File Structure
 
-```powershell
+```text
 ├───config
 │       default.yml
 │
