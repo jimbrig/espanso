@@ -167,9 +167,12 @@ I have organized my match files into various categories:
 - [`excel.yml`](./match/excel.yml): Excel related expansions
 - [`git.yml`](./match/git.yml): Git related expansions
 - [`links.yml`](./match/links.yml): Links
-- [`passwords.yml`](./match/passwords.yml): Passwords
+- [`passwords.yml`](./match/passwords.yml): Passwords [^1]
 - [`phones.yml`](./match/phones.yml): Phone numbers
-- [`secrets.yml`](./match/secrets.yml): Secrets
+- [`secrets.yml`](./match/secrets.yml): Secrets [^1]
+
+
+[^1]: Passwords and secrets files are encrypted via [`git-crypt`]().
 
 ## Packages
 
