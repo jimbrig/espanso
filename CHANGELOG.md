@@ -8,10 +8,12 @@
 
 ### Configuration
 
+- Add gitattributes and gitignore
 - Add git-cliff config file
 
 ### Documentation
 
+- Add README
 - Initialize changelog
 
 ### Features
