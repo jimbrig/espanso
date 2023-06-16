@@ -17,6 +17,7 @@
 
 ### Documentation
 
+- Add git-crypt notes to README
 - Update README contents
 - Update README.md
 - Add README
