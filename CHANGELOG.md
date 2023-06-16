@@ -8,6 +8,7 @@
 
 ### Configuration
 
+- Add vscode settings
 - Add gitattributes and gitignore
 - Add git-cliff config file
 
@@ -20,6 +21,16 @@
 
 ### Features
 
+- Add phones match file
+- Add links match file
+- Add git match file
+- Add excel match file
+- Add emails match file
+- Add dev match file
+- Add datetime match file
+- Add base match file
+- Add address match file
+- Add about match file
 - Add espanso packages
 - Add espanso config file
 - Initialize github actions
