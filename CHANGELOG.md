@@ -13,6 +13,7 @@
 
 ### Documentation
 
+- Update README.md
 - Add README
 - Initialize changelog
 
