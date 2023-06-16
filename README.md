@@ -1,6 +1,6 @@
 # Espanso <img align="right" syle='float' href='https://user-images.githubusercontent.com/32652297/139356362-d02ef475-1b0e-4b73-9d9c-7b7e147cb426.png' src='https://user-images.githubusercontent.com/32652297/139356362-d02ef475-1b0e-4b73-9d9c-7b7e147cb426.png' />
 
-> **Note**: 
+> **Note**:
 > *My personal [Espanso](https://espanso.org/) text expander configuration files and setup.*
 
 *This repository is a part of my [dotfiles]().*
@@ -31,11 +31,14 @@
 - [Setup](#setup)
     - [Installation](#installation)
     - [Configuration](#configuration)
-    - [Notes](#notes)
-- [User Scripts](#user-scripts)
+        - [File Structure](#file-structure)
+- [User Configuration](#user-configuration)
+- [Matches](#matches)
+- [Packages](#packages)
 - [Editing](#editing)
 - [Toggle](#toggle)
 - [Application Specific](#application-specific)
+- [Resources](#resources)
 
 <!-- /TOC -->
 
@@ -77,7 +80,7 @@ This is useful in many ways, including but not limited to:
 
 ### Installation
 
-Install via on Windows using a package manager of choice:
+Install using your preferred package manager:
 
 - `winget`
 - `chocolatey`
@@ -88,7 +91,7 @@ Install via on Windows using a package manager of choice:
 winget install FedericoTerzi.espanso
 
 # chocolatey
-sudo cinst -y espanso
+sudo choco inst -y espanso
 
 # scoop
 scoop install espanso
@@ -100,44 +103,89 @@ scoop install espanso
 
 `espanso` uses a file-based configuration approach. Simply run `espanso path` to determine the configuration folder's path.
 
-```powershell
-> ~\AppData\Roaming\espanso :: git(main) 10:43:57
-➜ wsl -e tree
-.
-├── README.md
-├── default.yml
-└── user
-    ├── credit-cards.yml
-    ├── dev-secrets.yml
-    ├── dev.yml
-    ├── emails.yml
-    ├── links.yml
-    ├── passwords.yml
-    ├── phone-numbers.yml
-    └── websites.yml
+On Widows, the default path is `%APPDATA%\espanso`, and the configuration files are split into two folders:
 
-1 directory, 10 files
+- [`config`](./config/): Contains the main configuration file, `default.yml`, and any other configuration files.
+- [`match`](./match/): Contains the *match* files, which are YAML files that contain the actual text expansions along with any installed packages.
+
+#### File Structure
+
+```powershell
+├───config
+│       default.yml
+│
+└───match
+    │   about.yml
+    │   address.yml
+    │   base.yml
+    │   datetime.yml
+    │   dev.yml
+    │   emails.yml
+    │   excel.yml
+    │   git.yml
+    │   links.yml
+    │   passwords.yml
+    │   phones.yml
+    │   secrets.yml
+    │
+    └───packages
+        ├───docker-compose
+        ├───get-ip
+        ├───lorem
+        ├───markdown-shortcuts
+        ├───rand-tools
+        └───wttr
 ```
 
-### Notes
+## User Configuration
 
-`espanso` scripts should be located at `%APPDATA%\espanso` (on Windows) [^1] with a file named `default.yml` and (optionally) a sub-directory named `user`
-(i.e. `%APPDATA%\espanso\user`).
+My personal configuration file, [`default.yml`](./config/default.yml), is located in the [`config`](./config/) folder.
 
-Place sub-level child-scripts in the user folder.
+See [User Configuration](https://espanso.org/docs/user-configuration/) for more information.
 
-## User Scripts
+Currently the only settings I specify are:
 
-Currently I have a total of 8 user-specific child scripts under parent *default.yml*, which are housed in the [user dirctory](user/):
+```yaml
+toggle_key: ALT
+search_shortcut: ALT+SHIFT+SPACE
+search_trigger: ":search"
+show_icon: true
+```
 
-- [credit-cards.yml](user/credit-cards.yml): My credit cards [^2]
-- [dev-secrets.yml](user/dev-secrets.yml): Developer secrets [^2]
-- [dev.yml](user/dev.yml): Development related replacements (i.e. common code strings).
-- [emails.yml](user/emails.yml): My email addresses
-- [links.yml](user/links.yml): Personal websites
-- [passwords.yml](user/passwords.yml): My common passwords [^2]
-- [phone-numbers.yml](user/phone-numbers.yml): My cell phone numbers
-- [websites.yml](user/websites.yml): Similar to `links.yml`
+## Matches
+
+The [`match`](./match/) folder contains the *match* files, which are YAML files that contain the actual text expansions.
+
+I have organized my match files into various categories:
+
+- [`about.yml`](./match/about.yml): About me
+- [`address.yml`](./match/address.yml): Addresses
+- [`base.yml`](./match/base.yml): Base expansions
+- [`datetime.yml`](./match/datetime.yml): Date and time expansions
+- [`dev.yml`](./match/dev.yml): Development related expansions
+- [`emails.yml`](./match/emails.yml): Email addresses
+- [`excel.yml`](./match/excel.yml): Excel related expansions
+- [`git.yml`](./match/git.yml): Git related expansions
+- [`links.yml`](./match/links.yml): Links
+- [`passwords.yml`](./match/passwords.yml): Passwords
+- [`phones.yml`](./match/phones.yml): Phone numbers
+- [`secrets.yml`](./match/secrets.yml): Secrets
+
+## Packages
+
+The [`packages`](./match/packages/) folder contains the *packages* that I have installed.
+
+See [Packages](https://espanso.org/docs/packages/) for more information.
+
+Currently, I have the following packages installed:
+
+- [`docker-compose`](https://hub.espanso.org/packages/docker-compose/)
+- [`get-ip`](https://hub.espanso.org/packages/get-ip/)
+- [`lorem`](https://hub.espanso.org/packages/lorem/)
+- [`markdown-shortcuts`](https://hub.espanso.org/packages/markdown-shortcuts/)
+- [`rand-tools`](https://hub.espanso.org/packages/rand-tools/)
+- [`wttr`](https://hub.espanso.org/packages/wttr/)
+
 
 ## Editing
 
@@ -145,7 +193,7 @@ For quick editing of espanso scripts run `espanso edit`.
 
 ## Toggle
 
-To toggle `espanso`'s runtime simply double-tab the `Alt` key. This makes it useful to temporarilly disable then re-enable the service.
+To toggle `espanso`'s runtime simply double-tab the `Alt` key. This makes it useful to temporarily disable then re-enable the service.
 
 ## Application Specific
 
@@ -168,10 +216,4 @@ The following table lays out all possible `filter_*` configurations:
 
 ***
 
-[^1]: File Paths are Operating Sysstem Dependent:
-    - Linux: `$XDG_CONFIG_HOME/espanso` (e.g. `/home/user/.config/espanso`)
-    - macOS: `$HOME/Library/Preferences/espanso` (e.g. `/Users/user/Library/Preferences/espanso`)
-    - Windows: `{FOLDERID_RoamingAppData}\espanso` (e.g. `%APPDATA%\espanso)`)
-
-
-[^2]: Encrypted via [git-crypt]().
+## Resources
