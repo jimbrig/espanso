@@ -23,6 +23,7 @@
 
 ### Features
 
+- Add encrypted secrets match file
 - Add phones match file
 - Add links match file
 - Add git match file
