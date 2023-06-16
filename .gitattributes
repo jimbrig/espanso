@@ -1,5 +1,6 @@
 # git-crypt
 match/secrets.yml filter=git-crypt diff=git-crypt
+match/passwords.yml filter=git-crypt diff=git-crypt
 
 # Common settings that generally should always be used with your language specific settings
 
