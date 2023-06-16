@@ -1,0 +1,413 @@
+name: developer
+parent: default
+
+matches:
+  # git-crypt .gitattributes snippet
+  - trigger: ":gitcrypt"
+    replace: " filter=git-crypt diff=git-crypt"
+
+  # markdown HTML details/summary collapsible dropdown
+  - trigger: ":details"
+    replace: "<details><summary>View</summary><p>\n\n</p></details>"
+
+  # HTML title w/ image
+  - trigger: ":titleimage"
+    replace: '<h1>TITLE</h1><p><img align="right" style="float" height="45px" href="#" src="#"></p>'
+
+  # UNIX shebangs
+  - trigger: ":#sh"
+    replace: "#!/usr/bin/env sh"
+  - trigger: ":#bash"
+    replace: "#!/usr/bin/env bash"
+  - trigger: ":#pwsh"
+    replace: "#!/usr/bin/env pwsh"
+  - trigger: ":#python"
+    replace: "#!/usr/bin/env python3"
+  - trigger: ":#expect"
+    replace: "#!/usr/bin/expect -f"
+  - trigger: ":#r"
+    replace: "#!/usr/bin/env r"
+  - trigger: ":#zsh"
+    replace: "#!/usr/bin/env zsh"
+
+  # ~ for %USERPROFILE%
+  - trigger: ":~%"
+    replace: "%USERPROFILE%"
+
+  # ORCID
+  - trigger: ":orcid"
+    replace: "0000-0002-7489-8787"
+
+  # GitHub PAT from EnvVar
+  - trigger: ":ghpat"
+    replace: "{{token}}"
+    vars:
+      - name: token
+        type: shell
+        params:
+          cmd: "echo $env:GITHUB_API_TOKEN"
+
+  # IPv4 IP Addresses:
+  - trigger: ":ip"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "curl ifconfig.me"
+          shell: cmd
+
+  - trigger: ":wslip"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "hostname -I"
+          shell: "wsl"
+
+  # Installations
+
+  # Homebrew
+  - trigger: ":instbrew"
+    replace: "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+
+  # Chocolatey
+  - trigger: ":instchoco"
+    replace: "iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex"
+
+  # Scoop
+  - trigger: ":instscoop"
+    replace: "iwr -useb get.scoop.sh | iex"
+
+  # Windows Terminal
+  - trigger: ":instwt"
+    replace: "winget install Microsoft.WindowsTerminal"
+
+  # VS Code
+  - trigger: ":instvscode"
+    replace: "winget install Microsoft.VisualStudioCode"
+
+  # Docker Desktop
+  - trigger: ":instdocker"
+    replace: "winget install Docker.DockerDesktop"
+
+  # Windows Subsystem for Linux
+  - trigger: ":instwsl"
+    replace: "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart"
+
+  # R (Linux)
+  - trigger: ":instr"
+    replace: "sudo apt-get install r-base"
+
+  # R (Windows)
+  - trigger: ":instrwin"
+    replace: "winget install R.R"
+
+  # RStudio (Linux)
+
+
+  # Cargo
+
+
+  # Updates
+
+  # WSL - apt updates
+  - trigger: ":updateapt"
+    replace: "sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get autoremove"
+
+  # Chocolatey
+  - trigger: ":updatechoco"
+    replace: "choco upgrade all -y"
+
+  # Scoop
+  - trigger: "updatescoop"
+    replace: "scoop update && scoop update *"
+
+  # PowerShell
+  - trigger: ":updatepwsh"
+    replace: ""
+
+  # Install Commands / Snippets:
+
+  # Chocolatey
+  - trigger: ":chocoinst"
+    replace: "choco install {{package}} -y"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Scoop
+  - trigger: ":scoopinst"
+    replace: "scoop install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # PowerShell
+  - trigger: ":pwshinst"
+    replace: "Install-Module {{package}} -Force"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # WSL - apt
+  - trigger: ":aptinst"
+    replace: "sudo apt-get install {{package}} -y"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # R
+  - trigger: ":rinst"
+    replace: "install.packages('{{package}}')"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # R - pak
+  - trigger: ":pakinst"
+    replace: "pak::pkg_install('{{package}}')"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # R - devtools
+  - trigger: ":devtoolsinst"
+    replace: "devtools::install_github('{{package}}')"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # R - remotes
+  - trigger: ":remotesinst"
+    replace: "remotes::install_github('{{package}}')"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Python
+  - trigger: ":pyinst"
+    replace: "pip install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Python - pipx
+  - trigger: ":pipxinst"
+    replace: "pipx install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Node
+  - trigger: ":nodeinst"
+    replace: "npm install -g {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Node - npx
+  - trigger: ":npxinst"
+    replace: "npx {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Node - yarn
+  - trigger: ":yarninst"
+    replace: "yarn global add {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Node - nvm
+  - trigger: ":nvminst"
+    replace: "nvm install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Node - npm
+  - trigger: ":npminst"
+    replace: "npm install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Ruby
+  - trigger: ":rubyinst"
+    replace: "gem install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # VSCode
+  - trigger: ":vscodeinst"
+    replace: "code --install-extension {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # VSCode - Insiders
+  - trigger: ":vscodeinsinst"
+    replace: "code-insiders --install-extension {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Cargo
+  - trigger: ":cargoinst"
+    replace: "cargo install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Rust
+  - trigger: ":rustinst"
+    replace: "rustup component add {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Rust - rustup
+  - trigger: ":rustupinst"
+    replace: "rustup toolchain install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Rust - cargo
+  - trigger: ":cargoinst"
+    replace: "cargo install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Golang
+  - trigger: ":goinst"
+    replace: "go get {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Terraform
+  - trigger: ":tfinst"
+    replace: "terraform init"
+
+  # Terraform - init
+  - trigger: ":tfinit"
+    replace: "terraform init"
+
+  # Terraform - plan
+  - trigger: ":tfplan"
+    replace: "terraform plan"
+
+  # Terraform - apply
+  - trigger: ":tfapply"
+    replace: "terraform apply"
+
+  # Terraform - destroy
+  - trigger: ":tfdestroy"
+    replace: "terraform destroy"
+
+  # Terraform - validate
+  - trigger: ":tfvalidate"
+    replace: "terraform validate"
+
+  # Terraform - fmt
+  - trigger: ":tffmt"
+    replace: "terraform fmt"
+
+  # WinGet
+  - trigger: ":wingetinst"
+    replace: "winget install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # WinGet - update
+  - trigger: ":wingetupdate"
+    replace: "winget upgrade {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # GitHub CLI Extensions
+  - trigger: ":ghext"
+    replace: "gh extension install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Espanso Packages
+  - trigger: ":espansoinst"
+    replace: "espanso install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+  # Espanso Packages - update
+  - trigger: ":espansoupdate"
+    replace: "espanso install {{package}}"
+    vars:
+      - name: package
+        type: prompt
+        params:
+          message: "Package Name: "
+
+
