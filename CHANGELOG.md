@@ -20,6 +20,7 @@
 
 ### Features
 
+- Add espanso packages
 - Add espanso config file
 - Initialize github actions
 
