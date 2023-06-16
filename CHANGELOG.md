@@ -8,6 +8,7 @@
 
 ### Configuration
 
+- Update gitattributes
 - Update gitignore
 - Add vscode settings
 - Add gitattributes and gitignore
