@@ -9,6 +9,7 @@
 ### Configuration
 
 - Update gitattributes
+- Update gitattributes
 - Update gitignore
 - Add vscode settings
 - Add gitattributes and gitignore
@@ -23,6 +24,7 @@
 
 ### Features
 
+- Add encrypted passwords match file
 - Add encrypted secrets match file
 - Add phones match file
 - Add links match file
