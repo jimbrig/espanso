@@ -8,6 +8,7 @@
 
 ### Configuration
 
+- Update gitignore
 - Add vscode settings
 - Add gitattributes and gitignore
 - Add git-cliff config file
