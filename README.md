@@ -1,8 +1,9 @@
 # Espanso <img align="right" syle='float' href='https://user-images.githubusercontent.com/32652297/139356362-d02ef475-1b0e-4b73-9d9c-7b7e147cb426.png' src='https://user-images.githubusercontent.com/32652297/139356362-d02ef475-1b0e-4b73-9d9c-7b7e147cb426.png' />
 
-> **Note**:
-> *My personal [Espanso](https://espanso.org/) text expander configuration files and setup.
-> This repository is a part of my [dotfiles]().*
+> **Note**: 
+> *My personal [Espanso](https://espanso.org/) text expander configuration files and setup.*
+
+*This repository is a part of my [dotfiles]().*
 
 ***
 
